@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
+require('../utils/db_mongo');
+const Schema = mongoose.Schema;
+const Provider = require('./providers');
+
 const objectSchema = {
     id: { 
         type: Number, 
@@ -17,18 +21,9 @@ const objectSchema = {
         type: String, 
         required: true 
     },
-    image:{
-        type: String,
-        validate: {
-            validator: function(url){
-                if(url.indexOf('.jpg') != -1 || url.indexOf('.png') != -1)
-                    return true;
-                else {
-                    return false;
-                }
-            }, 
-            message: "Porfa, sólo imágenes JPG o PNG"
-        }
+    provider: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Provider'
     }
 };
 // Crear el esquema
@@ -40,14 +35,15 @@ module.exports = Product;
 
 
 //Insertar un producto
-/*
-const p = new Product({
-    id: 4,
-    title: "Tortilla",
-    price: 1.80,
-    description: "Tortilla jugosa del teatro",
-    image:"https://www.recetasderechupete.com/wp-content/uploads/2020/11/Tortilla-de-patatas-4-768x530.png"
+
+Provider.findOne({ provider: "Feria SA"}).then(provider => {
+    const p = new Product({
+        id: 3,
+        title: "Pescaito",
+        price: 3.50,
+        description: "Frito",
+        provider: provider._id
+    });
+    p.save().then((data) => console.log(data));
 });
 
-p.save().then((data)=>console.log(data));
-*/
