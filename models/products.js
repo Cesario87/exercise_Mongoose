@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const Provider = require('./providers');
 
 const objectSchema = {
-    id: { 
-        type: Number, 
-        required: true,
-        unique: true
-    },
+    // id: { 
+    //     type: Number, 
+    //     required: true,
+    //     unique: true
+    // },
     title: { 
         type: String, 
         required: true 
@@ -36,14 +36,14 @@ module.exports = Product;
 
 //Insertar un producto
 
-Provider.findOne({ provider: "Feria SA"}).then(provider => {
-    const p = new Product({
-        id: 3,
-        title: "Pescaito",
-        price: 3.50,
-        description: "Frito",
-        provider: provider._id
-    });
-    p.save().then((data) => console.log(data));
-});
+// Provider.findOne({ provider: "Feria SA"}).then(provider => {
+//     const p = new Product({
+//         id: 3,
+//         title: "Pescaito",
+//         price: 3.50,
+//         description: "Frito",
+//         provider: provider._id
+//     });
+//     p.save().then((data) => console.log(data));
+// });
 

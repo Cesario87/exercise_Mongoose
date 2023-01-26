@@ -4,5 +4,6 @@ const productsApiController = require("../controllers/productsApiController");
 
 
 productsApiRouter.get('/', productsApiController.getProductsProviders);
+productsApiRouter.post('/', productsApiController.postProductsProviders);
 
 module.exports = productsApiRouter;
