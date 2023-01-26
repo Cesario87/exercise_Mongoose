@@ -5,7 +5,8 @@ const Provider = require('./models/providers');
 const Product = require('./models/products');
 require('./utils/db_mongo');//conecta a la bbdd mONGO
 
-const productsApiRoutes = require('./routes/productsApiRoutes')
+const productsApiRoutes = require('./routes/productsApiRoutes');
+const providersApiRoutes = require('./routes/providersApiRoutes');
 
 const app = express();
 const port = 3000;
@@ -15,9 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router);
 
 app.use('/api/products', productsApiRoutes);
+app.use('/api/providers', providersApiRoutes);
 
 //1
-app.post('/providers', (req, res) => {
+app.post('/api/providers', (req, res) => {
     const newProvider = new Provider(req.body);
     newProvider.save((err, provider) => {
         if (err) {
