@@ -43,7 +43,13 @@ const postProductsProviders = async (req, res) => {
     });
 };
 
+const modifyProducts = async (req, res) => {
+
+}
+
 module.exports = {
     getProductsProviders,
-    postProductsProviders
+    postProductsProviders,
+    modifyProducts,
+
 }
